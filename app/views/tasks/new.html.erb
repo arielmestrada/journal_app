@@ -1,11 +1,11 @@
-<h1>Category Creation View</h1>
-<%= form_with(model: @category) do |f| %>
+
+<%= form_with(model: [@category, @task]) do |f| %>
 
     <p>
       <!-- we can access our controller instance variables here -->
-      <% if @category.errors.any? %>
+      <% if @task.errors.any? %>
         <ul>
-          <% @category.errors.full_messages.each do |message| %>
+          <% @task.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>

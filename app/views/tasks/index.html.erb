@@ -1,0 +1,13 @@
+<p>Category Name: <%= @category.name %> <br/></p>
+<%= link_to("Create new Task", new_category_task_path) %><br/><br/>
+<% @tasks.each do |task| %>    
+    <p>ID: <%= task.id %></p>
+    <p>Name: <%= task.name %></p>
+    <%= link_to category_task_path(@category.id, task.id) do %>
+        <%= 'Go to ' + task.name %>
+    <% end %><br/>  
+    <%= link_to("Edit", edit_category_task_path(@category.id, task.id)) %>          
+    
+    <br/>
+    <br/>
+<% end %>

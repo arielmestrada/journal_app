@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CreateCategoryTest < ActionDispatch::IntegrationTest
     test "should create a new category" do
-        get categories_new_path	
+        get new_category_path	
         assert_response :success
 
         assert_difference 'Category.count', 1 do

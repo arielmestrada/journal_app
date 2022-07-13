@@ -1,1 +1,15 @@
-<%= @categories %>
+<h1>Categories View</h1>
+<%= link_to("Create new Category", new_category_path) %><br/> <br/>
+<% @categories.each do |category| %>    
+    <p>ID: <%= category.id %></p>
+    <p>Name: <%= category.name %></p>
+    <%= link_to category_path(category.id) do %>
+        <%= 'Go to ' + category.name %>
+    <% end %><br/>  
+    <%= link_to("Edit", edit_category_path(category.id)) %>  
+
+    <%= button_to "Delete", {:action => 'destroy', :id => category.id }, :method => :delete %>
+    
+    <br/>
+    <br/>
+<% end %>
