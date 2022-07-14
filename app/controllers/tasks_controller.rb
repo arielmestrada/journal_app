@@ -30,11 +30,17 @@ class TasksController < ApplicationController
     def update
         @task = @category.tasks.find(params[:id])
 
-        if @category.update(task_params)
+        if @task.update(task_params)
             redirect_to category_tasks_path
         else
             render :edit
         end
+    end
+
+    def destroy
+        @task = @category.tasks.find(params[:id]).delete
+
+        redirect_to category_tasks_path
     end
 
     private

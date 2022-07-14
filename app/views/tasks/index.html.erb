@@ -6,8 +6,11 @@
     <%= link_to category_task_path(@category.id, task.id) do %>
         <%= 'Go to ' + task.name %>
     <% end %><br/>  
-    <%= link_to("Edit", edit_category_task_path(@category.id, task.id)) %>          
+    <%= link_to("Edit", edit_category_task_path(@category.id, task.id)) %>    
+    
+    <%= button_to "Delete", {:action => 'destroy', :id => task.id }, :method => :delete %>
     
     <br/>
     <br/>
 <% end %>
+<%= link_to("Back to Categories", categories_path) %>

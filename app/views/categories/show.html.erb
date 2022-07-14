@@ -1,5 +1,6 @@
 <h1>Category View</h1>
 <p>ID: <%= @category.id %></p><br/>
 <p>Name: <%= @category.name %></p>
-<%= link_to("Edit", edit_category_path) %>
-    
+<%= link_to("Edit", edit_category_path) %><br/>
+
+<%= link_to("Go to Tasks", category_tasks_path(@category.id)) %>
