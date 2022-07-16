@@ -2,14 +2,17 @@ require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
+    setup do
+        @test_category = categories(:category_one)
+    end
+
     test "should get category index" do 
         get categories_path
         assert_response :success
     end    
 
     test "should show category" do
-        @category = Category.create(name: "Some Category")
-        get category_path(@category.id)
+        get category_path(@test_category.id)
         assert_response :success
     end
 
@@ -27,27 +30,37 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
         follow_redirect!
         assert_response :success
     end   
+
+    test "should be unprocessable entity if category not saved" do
+        assert_difference("Category.count", 0) do            
+            post categories_path, params: { category: { name: "" } }
+            assert_response :unprocessable_entity
+        end
+    end  
     
     test "should get edit category" do
-        get edit_category_path(Category.first.id)
+        get edit_category_path(@test_category.id)
         assert_response :success
     end
 
     test "should update category" do
-        @category = Category.create(name: "Some Category")
+        patch category_path(@test_category.id), params: { category: { name: "Edited Name" } }
 
-        patch category_path(@category.id), params: { category: { name: "Edited Name" } }
+        @test_category.reload
 
-        @category.reload
-
-        assert_equal "Edited Name", @category.name
+        assert_equal "Edited Name", @test_category.name
     end
 
-    test "should delete a category" do
-        @category = Category.first
+    test "should be unprocessable entity if category not edited" do
+        assert_difference("Category.count", 0) do            
+            patch category_path(@test_category.id), params: { category: { name: "" } }
+            assert_response :unprocessable_entity
+        end
+    end 
 
+    test "should delete a category" do
         assert_difference("Category.count", -1) do            
-            delete category_path(@category.id)
+            delete category_path(@test_category.id)
             assert_response :redirect
         end
         

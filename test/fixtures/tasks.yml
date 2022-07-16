@@ -4,7 +4,7 @@ one:
   name: MyString
   description: MyText
   deadline: 2022-07-08 19:28:50
-  category_id: 1
+  category: category_one
 
 two:
   name: MyString

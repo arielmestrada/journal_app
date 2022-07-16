@@ -31,4 +31,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "pry"
+  gem 'simplecov', require: false
 end

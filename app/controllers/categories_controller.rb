@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
         if @category.save
             redirect_to categories_path
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
 
@@ -31,7 +31,7 @@ class CategoriesController < ApplicationController
         if @category.update(category_params)
             redirect_to categories_path
         else
-            render :edit
+            render :edit, status: :unprocessable_entity
         end
     end
 

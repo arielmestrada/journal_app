@@ -19,7 +19,7 @@ class TasksController < ApplicationController
         if @task.save
             redirect_to category_tasks_path
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
 
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
         if @task.update(task_params)
             redirect_to category_tasks_path
         else
-            render :edit
+            render :edit, status: :unprocessable_entity
         end
     end
 
@@ -50,6 +50,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:name, :category_id)
+        params.require(:task).permit(:name, :description, :deadline, :category_id)
     end
 end 
