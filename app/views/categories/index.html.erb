@@ -1,4 +1,8 @@
 <h1>Categories View</h1>
+<%= button_to "signout", destroy_user_session_path, method: :delete %>
+
+
+
 <%= link_to("Create new Category", new_category_path) %><br/> <br/>
 <% @categories.each do |category| %>    
     <p>ID: <%= category.id %></p>
