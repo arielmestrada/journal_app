@@ -1,19 +1,31 @@
-<h1>Categories View</h1>
-<%= button_to "signout", destroy_user_session_path, method: :delete %>
-
-
-
-<%= link_to("Create new Category", new_category_path) %><br/> <br/>
-<% @categories.each do |category| %>    
-    <p>ID: <%= category.id %></p>
-    <p>Name: <%= category.name %></p>
-    <%= link_to category_path(category.id) do %>
-        <%= 'Go to ' + category.name %>
-    <% end %><br/>  
-    <%= link_to("Edit", edit_category_path(category.id)) %>  
-
-    <%= button_to "Delete", {:action => 'destroy', :id => category.id }, :method => :delete %>
-    
-    <br/>
-    <br/>
-<% end %>
+<div class="container main-c">
+    <div class="row border mb-3">
+        <div class="col">
+            <h1>Categories</h1>
+            <%= link_to "Home Page", root_path, class:"btn btn-link no-pad-sides" %>
+            <a class="btn no-pad-sides rm-style"> > Categories</a>          
+        </div>
+    </div>    
+    <div class="row">
+        <%= link_to "Create New Category", new_category_path, data:{turbo_frame: "modal"}, class:"btn btn-secondary mb-3" %>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Category Name</th>
+                    <th colspan="4" scope="col" style="text-align: center">Options</th>
+                </tr>
+            </thead>
+            <tbody>                
+                <% @categories.each do |category| %>    
+                    <tr>
+                        <td><%= category.name %></td>
+                        <td><%= link_to "View", category_path(category.id), class:"btn btn-success" %></td>
+                        <td><%= link_to "Tasks", category_tasks_path(category.id), class:"btn btn-primary" %></td>
+                        <td><%= link_to "Edit", edit_category_path(category.id), class:"btn btn-warning" %>  </td>
+                        <td><%= button_to "Delete", {:action => 'destroy', :id => category.id }, :method => :delete, class:"btn btn-danger" %></td>               
+                    </tr>  
+                <% end %>
+            </tbody>
+        </table>
+    </div>    
+</div>

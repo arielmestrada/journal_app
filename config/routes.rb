@@ -4,9 +4,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
   resources :categories do
     resources :tasks
   end
+
+  delete '/categories/:category_id/tasks/:id' => 'pages#destroy', as: 'delete_task'
+
+  root to: 'pages#index'
 
 end

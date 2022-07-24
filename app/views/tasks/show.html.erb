@@ -1,4 +1,37 @@
-<p>ID: <%= @task.id %></p>
-<p>Name: <%= @task.name %></p>
-<p>Description: <%= @task.description %></p>
-<p>Deadline: <%= @task.deadline %></p>
+<div class="container main-c">
+    <div class="row border mb-3">
+        <div class="col">
+            <h1>Task Details</h1>
+            <%= link_to "Home Page", root_path, class:"btn btn-link no-pad-sides" %> >
+            <%= link_to "Categories", categories_path, class:"btn btn-link no-pad-sides" %> >
+            <%= link_to "#{@category.name}", category_path(@category.id), class:"btn btn-link no-pad-sides" %> >
+            <%= link_to "Tasks", category_tasks_path(@category.id), class:"btn btn-link no-pad-sides" %>
+            <a class="btn no-pad-sides rm-style"> > <%= @task.name %></a>             
+        </div>              
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col" colspan="2">Options</th>
+                </tr>
+            </thead> 
+            <tbody>                
+                <tr>
+                    <td><%= @task.name %></td>
+                    <td><%= @category.name %></td>
+                    <td><%= @task.description %></td>
+                    <td><%= @task.deadline %></td>
+                    <td><%= link_to "Edit", edit_category_task_path(@category.id, @task.id), class:"btn btn-warning" %></td>
+                    <td><%= button_to "Delete", {:action => 'destroy', :id => @task.id }, :method => :delete, class:"btn btn-danger" %></td>   
+                </tr>
+            </tbody>
+        </table>
+    </div>  
+    <%= link_to "Back", :back, class:"btn btn-primary" %>
+</div>
+

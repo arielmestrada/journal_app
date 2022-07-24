@@ -1,35 +1,44 @@
-
-<%= form_with(model: [@category, @task]) do |f| %>
-
+<div class="container main-c">
+  <div class="row border mb-3">
+    <div class="col">
+      <h1>Create New Task for <%= @category.name %></h1>
+      <%= link_to "Home Page", root_path, class:"btn btn-link no-pad-sides" %> >
+      <%= link_to "Categories", categories_path, class:"btn btn-link no-pad-sides" %> >
+      <%= link_to "#{@category.name}", category_path(@category.id), class:"btn btn-link no-pad-sides" %> >
+      <%= link_to "Tasks", category_tasks_path(@category.id), class:"btn btn-link no-pad-sides" %>
+      <a class="btn no-pad-sides rm-style"> > Create Task</a> 
+    </div>
+  </div>
+  <%= form_with(model: [@category, @task]) do |f| %>
+    
     <p>
-      <!-- we can access our controller instance variables here -->
       <% if @task.errors.any? %>
         <ul>
-          <% @task.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
           <% end %>
-        </ul>
-      <% end %>
-    </p>
+          </ul>
+          <% end %>
+          </p>  
     
-    <p>
-        <%= f.label :name %><br/>
-        <%= f.text_field :name %>
-    </p>
-
-    <p>
-        <%= f.label :description %><br/>
-        <%= f.text_field :description %>
-    </p>
-
-    <p>
-        <%= f.label :deadline %><br/>
-        <%= f.date_field :deadline %>
-    </p>
-    
-    <p>
-      <%= f.submit %>
-    </p>
-    
+          <div class="field form-group mb-3">
+          <%= f.label :name, class:"form-label", value:"Task Name" %>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+          
+        <div class="field form-group mb-3">
+          <%= f.label :description, class:"form-label", value:"Description" %>
+          <%= f.text_field :description, class:"form-control" %>
+        </div>
+          
+        <div class="field form-group mb-3">
+          <%= f.label :deadline, class:"form-label", value:"Deadline" %>
+          <%= f.date_field :deadline, min: Date.today, class:"form-control" %>
+        </div>
+          
+        <div class="actions mb-3">
+            <%= f.submit "Create Task", class:"btn btn-primary" %>
+        </div> 
+        <%= link_to "Back", :back, class:"btn btn-primary" %>
     <% end %>
-    
+</div>

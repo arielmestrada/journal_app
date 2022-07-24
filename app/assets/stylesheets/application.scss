@@ -1,1 +1,37 @@
- @import "bootstrap";
+.col-header {
+    font-weight: 600;
+}
+
+.main-c {
+   margin-top: 1rem
+}
+
+tr > th, tr > td {   
+   text-align: center;
+   vertical-align: middle;
+   padding: 0;
+}
+
+.rm-style {
+   text-decoration: none;
+}
+
+.indent-one{
+   margin-left: 1rem
+}
+
+.indent-two{
+   margin-left: 2rem
+}
+
+.no-pad-sides {
+   padding-left: 0 !important;
+   padding-right: 0 !important;
+}
+
+.p-inline {
+   display: inline
+}
+
+
+@import "bootstrap";

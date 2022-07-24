@@ -1,0 +1,39 @@
+<div class="container main-c">
+    <div class="row border mb-3">
+        <div class="col">
+            <h1>Home Page</h1>
+            <%= link_to "Go to Categories", categories_path, class:"btn btn-primary mb-3" %>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class:"btn btn-light mb-3" %>
+        </div>
+    </div>
+    <div class="row">
+        <% if @tasks_today.count != 0 %>
+            <h2>Pending tasks for today:</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col" colspan="2">Options</th>
+                    </tr>
+                </thead> 
+                <tbody>   
+                    <% @tasks_today.each do |task| %>
+                        <tr>
+                            <td><%= task['name'] %></td>
+                            <td><%= @category.find(task['category_id']).name %></td>
+                            <td><%= task['description'] %></td>
+                            <td><%= task['deadline'] %></td>
+                            <td><%= link_to "Edit", edit_category_task_path(task['category_id'], task['task_id']), class:"btn btn-warning" %></td>
+                            <td><%= button_to "Delete", delete_task_path(task['category_id'], task['task_id']), :method => :delete, class:"btn btn-danger" %></td>  
+                        </tr
+                    <% end %>  
+                </tbody>
+            </table>
+        <% else %>
+            <h2>You have no pending task for today!</h2>
+        <% end %>        
+    </div>  
+</div>

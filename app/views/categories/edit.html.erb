@@ -1,25 +1,37 @@
-<h1>Category Edit View</h1>
-<%= form_for @category do |f| %>
-
-  <p>
-  <!-- we can access our controller instance variables here -->
-  <% if @category.errors.any? %>
-    <ul>
-      <% @category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="container main-c">
+  <div class="row border mb-3">
+    <div class="col">
+      <h1>Edit Category: <%= @category.name %></h1>
+      <%= link_to "Home Page", root_path, class:"btn btn-link no-pad-sides" %> >
+      <%= link_to "Categories", categories_path, class:"btn btn-link no-pad-sides" %> >
+      <%= link_to "#{@category.name}", category_path(@category.id), class:"btn btn-link no-pad-sides" %>     
+      <a class="btn no-pad-sides rm-style"> > Edit</a>     
+    </div>
+  </div>
+  <div class="row">
+    <%= form_for @category do |f| %>
+      <p>
+      <% if @category.errors.any? %>
+        <ul>
+          <% @category.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
-  </p>
-    
-    <p>
-        <%= f.label :name %><br/>
-        <%= f.text_field :name %>
-    </p>
-    
-    <p>
-      <%= f.submit %>
-    </p>
-    
+      </p>
+        
+      <div class="field form-group mb-3">
+        <%= f.label :name, class:"form-label", value:"Updated Category Name" %>
+        <%= f.text_field :name, class:"form-control" %>
+      </div>
+        
+        
+      <div class="actions mb-3">
+        <%= f.submit "Update Category", class:"btn btn-primary" %>
+      </div>
+
+      <%= link_to "Back", :back, class:"btn btn-primary" %>
+        
     <% end %>
-    
+  </div>
+</div>

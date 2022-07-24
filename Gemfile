@@ -7,7 +7,7 @@ gem "rails", "~> 7.0.3"
 gem "sprockets-rails"
 gem "puma", "~> 5.0"
 gem "importmap-rails"
-gem "turbo-rails"
+gem "turbo-rails", "~> 1.0"
 gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -16,6 +16,11 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'jquery-rails'
 gem 'pg'
 gem 'devise'
+gem 'popper'
+gem 'popper_js'
+gem 'turbolinks'
+gem 'bootstrap-sass'
+gem 'bootstrap-modal-rails'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -24,13 +29,11 @@ end
 
 group :development do
   gem "web-console"
-  gem "pry"
 end
 
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem "pry"
   gem 'simplecov', require: false
 end

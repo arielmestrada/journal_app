@@ -10,7 +10,20 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body>  
+  <%- flash.each do |name, msg| -%>
+    <div class="container">
+      <% if msg == "Invalid Email or password." %>
+        <div class="alert alert-danger mb-3" role="alert">
+          <%= content_tag :div, msg, id: "flash_#{name}" %>
+        </div>
+      <% else %>
+        <div class="alert alert-success mb-3" role="alert">
+          <%= content_tag :div, msg, id: "flash_#{name}" %>
+        </div>
+      <% end %>
+    </div>
+  <%- end -%>
+  <%= yield %>
   </body>
 </html>
