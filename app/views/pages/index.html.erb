@@ -22,13 +22,13 @@
                 <tbody>   
                     <% @tasks_today.each do |task| %>
                         <tr>
-                            <td><%= task['name'] %></td>
-                            <td><%= @category.find(task['category_id']).name %></td>
-                            <td><%= task['description'] %></td>
-                            <td><%= task['deadline'] %></td>
-                            <td><%= link_to "Edit", edit_category_task_path(task['category_id'], task['task_id']), class:"btn btn-warning" %></td>
-                            <td><%= button_to "Delete", delete_task_path(task['category_id'], task['task_id']), :method => :delete, class:"btn btn-danger" %></td>  
-                        </tr
+                            <td><%= task.name %></td>
+                            <td><%= @category.find(task.category_id).name %></td>
+                            <td><%= task.description %></td>
+                            <td><%= task.deadline.to_s[0..9] %></td>
+                            <td><%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class:"btn btn-warning" %></td>
+                            <td><%= button_to "Delete", delete_task_path(task.category_id, task.id), :method => :delete, class:"btn btn-danger" %></td>  
+                        </tr>
                     <% end %>  
                 </tbody>
             </table>

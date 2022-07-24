@@ -41,6 +41,8 @@ class TasksController < ApplicationController
     def destroy
         @task = @category.tasks.find(params[:id])
         @task.delete
+
+        redirect_to category_tasks_path
     end
 
     private

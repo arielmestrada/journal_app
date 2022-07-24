@@ -19,7 +19,6 @@ gem 'devise'
 gem 'popper'
 gem 'popper_js'
 gem 'turbolinks'
-gem 'bootstrap-sass'
 gem 'bootstrap-modal-rails'
 
 group :development, :test do
